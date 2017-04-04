@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/fonts/icomoon.eot?wjksk5');
+  src:  url('/fonts/icomoon.eot?wjksk5#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?wjksk5') format('truetype'),
+    url('/fonts/icomoon.woff?wjksk5') format('woff'),
+    url('/fonts/icomoon.svg?wjksk5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-prize:before {
+  content: "\e903";
+}
+.icon-intern:before {
+  content: "\e905";
+}
+.icon-skill:before {
+  content: "\e900";
+}
+.icon-evaluation:before {
+  content: "\e904";
+}
+.icon-pig:before {
+  content: "\e907";
+}
+.icon-movie:before {
+  content: "\e908";
+}
+.icon-list:before {
+  content: "\e90e";
+}
+.icon-practice:before {
+  content: "\e906";
+}
+.icon-delicacy:before {
+  content: "\e909";
+}
+.icon-loc:before {
+  content: "\e90b";
+}
+.icon-certificate:before {
+  content: "\f007";
+}
+.icon-repo:before {
+  content: "\f001";
+}
+.icon-phone:before {
+  content: "\e90c";
+}
+.icon-hobby:before {
+  content: "\e901";
+}
+.icon-read:before {
+  content: "\e90a";
+}
+.icon-profile:before {
+  content: "\e902";
+}
+.icon-age:before {
+  content: "\e90d";
+}
+.icon-education:before {
+  content: "\e80c";
+}
+.icon-mail:before {
+  content: "\f2b6";
+}
+.icon-photo:before {
+  content: "\f2be";
+}

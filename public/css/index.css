@@ -1,0 +1,221 @@
+/* reset style */
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    line-height: 1.25;
+    font-size: 16px;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+
+/* page style */
+
+.page-a4 {
+    width: 210mm;
+    height: 297mm;
+    padding: 10mm 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    border: 5mm solid #000;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.flex-container {
+    display: flex;
+    display: -webkit-flex;
+    overflow: hidden;
+}
+
+.flex-container>.column {
+    width: 50%;
+    overflow: hidden;
+}
+
+.column>div {
+    overflow: hidden;
+}
+
+.brief {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.brief>img {
+    width: 8em;
+    height: 8em;
+    margin-bottom: 1em;
+    border-radius: 50%;
+}
+
+.brief>.name {
+    font-size: 2em;
+}
+
+.brief>.job {
+    margin: 1em 0;
+}
+
+.group {
+    margin: 1em;
+}
+
+.group::after {
+    content: "";
+    clear: both;
+}
+
+.group-title {
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.group-title>.icon {
+    font-size: 3em;
+}
+
+.group-title>.name {
+    flex-grow: 2;
+    margin-left: 10px;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.arrow {
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    border: 1px inset #000;
+    position: relative;
+}
+
+.arrow::before {
+    position: absolute;
+    top: 0.5px;
+    left: -1px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 6px solid #000;
+    border-left: 12px solid transparent;
+}
+
+.basic>li {
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+}
+
+.basic>li>span {
+    margin-right: 1em;
+}
+
+.hobby {
+    overflow: hidden;
+}
+
+.hobby>li {
+    float: left;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.hobby>li>span {
+    font-size: 2em;
+    padding: 5px;
+    border: 1px dashed #666;
+}
+
+.hobby>li>p {
+    margin-top: 0.5em;
+}
+
+.prize>li, .certificate>li {
+    margin: 0.5em;
+}
+
+.skill {
+    overflow: hidden;
+}
+
+.skill>li {
+    float: left;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dashed #666;
+    position: relative;
+}
+
+.skill .degree {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+.timeline {
+    margin-left: 25px;
+    padding-left: 25px;
+    padding-top: 5px;
+    border-left: 1px solid #000;
+}
+
+.timeline .item {
+    margin-bottom: 10px;
+}
+
+.timeline .title {
+    font-weight: bold;
+}
+
+.title .line-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+    position: relative;
+    margin-left: -25px;
+    margin-right: 15px;
+    transform: translateX(-50%);
+}
+
+.title .line-dot::before {
+    display: block;
+    content: "";
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.timeline .content {
+    margin-top: 5px;
+}
