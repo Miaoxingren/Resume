@@ -1,0 +1,219 @@
+{
+    "page": [
+    {
+        "column": [
+        {
+            "module": [
+            {
+                "name": "brief",
+                "data":
+                {
+                    "name": "XXX",
+                    "job": "XXX"
+                }
+            },
+            {
+                "name": "basic",
+                "data": [
+                {
+                    "icon": "age",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "loc",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "phone",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "mail",
+                    "content": "XXX"
+                }]
+            },
+            {
+                "name": "hobby",
+                "data": [
+                {
+                    "icon": "movie",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "delicacy",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "read",
+                    "content": "XXX"
+                },
+                {
+                    "icon": "pig",
+                    "content": "XXX"
+                }]
+            },
+            {
+                "name": "prize",
+                "data": ["XXX"]
+            },
+            {
+                "name": "certificate",
+                "data": ["XXX", "XXX"]
+            }]
+        },
+        {
+            "module": [
+            {
+                "name": "education",
+                "data": [
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                }]
+            },
+            {
+                "name": "practice",
+                "data": [
+                {
+                    "name": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "content": "XXX"
+                }]
+            },
+            {
+                "name": "intern",
+                "data": [
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                }]
+            }]
+        }]
+    },
+    {
+        "column": [
+        {
+            "module": [
+            {
+                "name": "skill",
+                "data": [
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                },
+                {
+                    "name": "XXX",
+                    "degree": "50%"
+                }]
+            },
+            {
+                "name": "evaluation",
+                "data": "XXX"
+            }]
+        },
+        {
+            "module": [
+            {
+                "name": "repo",
+                "data": [
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                },
+                {
+                    "name": "XXX",
+                    "headline": "XXX",
+                    "content": "XXX"
+                }]
+            }]
+        }]
+    }]
+}
