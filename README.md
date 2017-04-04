@@ -2,8 +2,9 @@
 
 #### 简历制作步骤：
 1. 修改`resume.json`
-2. 运行命令`npm run server`
-3. 访问localhost: 8080
+2. 运行命令`npm install`
+3. 运行命令`npm run server`
+4. 访问localhost: 8080
 
 #### 格式说明：
 
@@ -148,3 +149,16 @@
             }]
         }]
     }
+
+#### icon font
+
+[Icon moon App](https://icomoon.io/app)
+
+添加自定义图标：
+1. 启动`iconmoon app`
+2. 导入`public/fonts/iconmoon.svg`中的图标
+3. 从`iconmoon app`中选择图标
+4. 生成图标并下载
+5. 解压`iconmoon`并将`fonts`文件夹置于`public`文件夹下
+6. 将`style.css`置于`public/css`文件夹下
+7. 修改`style.css`，`src:  url('fonts/icomoon.....')`改为`src:  url('/fonts/icomoon.....')`
