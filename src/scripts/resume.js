@@ -1,6 +1,6 @@
 var React = require('react');
 var Componts = require('./components.js');
-
+var ReactRedux = require('react-redux');
 var Column = React.createClass({
     render: function() {
         return (
@@ -36,17 +36,23 @@ var Page = React.createClass({
 
 var Resume = React.createClass({
     render: function() {
-        var pages = this.props.data.page;
         return (
             <div>
-                {pages.map(function(page, i) {
+                {this.props.data ? this.props.data.map(function(page, i) {
                     return (
                         <Page key={i} column={page.column} />
                     );
-                })}
+                }) : false}
             </div>
         );
     }
 });
 
-module.exports = Resume;
+
+var matchStateToProps = function(state, props) {
+    return {
+        data: state
+    };
+};
+
+module.exports = ReactRedux.connect(matchStateToProps)(Resume);

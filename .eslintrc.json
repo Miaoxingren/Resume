@@ -1,11 +1,14 @@
 {
-    "env": {
+    "env":
+    {
         "browser": true,
         "commonjs": true
     },
     "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
+    "parserOptions":
+    {
+        "ecmaFeatures":
+        {
             "experimentalObjectRestSpread": true,
             "jsx": true
         }
@@ -13,10 +16,14 @@
     "plugins": [
         "react"
     ],
-    "rules": {
+    "rules":
+    {
         "indent": [
             "error",
-            4
+            4,
+            {
+                "SwitchCase": 1
+            }
         ],
         "linebreak-style": [
             "error",
@@ -30,6 +37,7 @@
             "error",
             "always"
         ],
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "no-fallthrough": "off"
     }
 }
