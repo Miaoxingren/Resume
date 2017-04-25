@@ -6,32 +6,34 @@ var ADD_MODULE = 'ADD_MODULE';
 var REMOVE_MODULE = 'REMOVE_MODULE';
 var MODIFY_MODULE = 'MODIFY_MODULE';
 
-var pageId = 0;
 var moduleId = 0;
 
-function addPage(col) {
+// add page by column(1 or 2)
+function addPage(column) {
     return {
         type: ADD_PAGE,
-        id: pageId++,
-        column: col
+        column: column
     };
 }
 
-function addModule(pageId, col, name, data) {
+// remove page by page(0...n)
+function removePage(page) {
+    return {type: REMOVE_PAGE, page: page};
+}
+
+// add module by page(0..n) and column(0 or 1)
+function addModule(page, column, name, data) {
     return {
         type: ADD_MODULE,
-        pageId: pageId,
-        column: col,
+        page: page,
+        column: column,
         id: moduleId++,
         name: name,
         data: data
     };
 }
 
-function removePage(id) {
-    return {type: REMOVE_PAGE, id: id};
-}
-
+// remove module by module id
 function removeModule(id) {
     return {type: REMOVE_MODULE, id: id};
 }
@@ -45,36 +47,21 @@ function pages(state, action) {
     var nextState = state.slice(0);
     switch (action.type) {
         case ADD_PAGE:
-            nextState.push(createPage(action.id, action.column));
+            nextState.push(createPage(action.column));
             return nextState;
         case REMOVE_PAGE:
-            // var index = getPageIndex(action.id);
-            // if (index !== undefined) {
-            //     nextState.splice(index, 1);
-            //     pageId--;
-            //     return nextState;
-            // }
             nextState.pop();
-            pageId = nextState.length;
             return nextState;
         default:
             return state;
     }
 
-    function createPage(id, col) {
+    function createPage(colCnt) {
         var column = [];
-        for (var i = 0; i < col; i++) {
+        for (var i = 0; i < colCnt; i++) {
             column.push({module: []});
         }
-        return {id: id, column: column};
-    }
-
-    function getPageIndex(id) {
-        for (var i = 0, iLen = state.length; i < iLen; i++) {
-            if (state[i].id === id) {
-                return i;
-            }
-        }
+        return {column: column};
     }
 }
 
@@ -122,10 +109,9 @@ function resume(state, action) {
             nextState = pages(state, action);
             return nextState;
         case ADD_MODULE:
-            var pageIndex = getPageIndex(state, action.pageId);
-            console.log(state, action.pageId);
-            if (pageIndex !== undefined) {
-                nextState[pageIndex].column[action.column - 1].module = modules(nextState[pageIndex].column[action.column - 1].module, action);
+            var page = nextState[action.page];
+            if (page) {
+                page.column[action.column].module = modules(page.column[action.column].module, action);
                 return nextState;
             }
         case REMOVE_MODULE:
@@ -153,13 +139,6 @@ function resume(state, action) {
         }
     }
 
-    function getPageIndex(pages, id) {
-        for (var i = 0, iLen = pages.length; i < iLen; i++) {
-            if (pages[i].id === id) {
-                return i;
-            }
-        }
-    }
 }
 
 exports.ADD_PAGE = ADD_PAGE;

@@ -1,6 +1,6 @@
 var React = require('react');
-var Componts = require('./components.js');
 var ReactRedux = require('react-redux');
+var Componts = require('./resumeCmp.js');
 
 var Column = React.createClass({
     render: function() {
