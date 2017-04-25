@@ -4,7 +4,6 @@ var Resume = require('./resume.js');
 var reducer = require('./reducer.js');
 var Componts = require('./editorCmp.js');
 
-
 var PageManager = React.createClass({
     getInitialState: function() {
         return {column: 2};
@@ -57,7 +56,16 @@ var ModuleManager = React.createClass({
         this.props.addModule(this.state.page - 1, this.state.column - 1, this.state.module, data);
     },
     recieveData: function(data) {
-        this.setState({data: data});
+        var copy = data;
+        if (data.constructor === Array) {
+            copy = data.slice(0);
+        } else if (typeof data === 'object') {
+            copy = {};
+            Object.keys(data).forEach(function (key) {
+                copy[key] = data[key];
+            });
+        }
+        this.setState({data: copy});
     },
     render: function () {
         return (
