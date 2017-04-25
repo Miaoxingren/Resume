@@ -29,60 +29,44 @@ function addModule(pageId, col, name, data) {
 }
 
 function removePage(id) {
-    return {
-        type: REMOVE_PAGE,
-        id: id
-    };
+    return {type: REMOVE_PAGE, id: id};
 }
 
 function removeModule(id) {
-    return {
-        type: REMOVE_MODULE,
-        id: id
-    };
+    return {type: REMOVE_MODULE, id: id};
 }
 
 function modifyModule(id, name, data) {
-    return {
-        type: MODIFY_MODULE,
-        id: id,
-        name: name,
-        data: data
-    };
+    return {type: MODIFY_MODULE, id: id, name: name, data: data};
 }
 
 function pages(state, action) {
     state = state || [];
     var nextState = state.slice(0);
     switch (action.type) {
-    case ADD_PAGE:
-        nextState.push(createPage(action.id, action.column));
-        return nextState;
-    case REMOVE_PAGE:
-        // var index = getPageIndex(action.id);
-        // if (index !== undefined) {
-        //     nextState.splice(index, 1);
-        //     pageId--;
-        //     return nextState;
-        // }
-        nextState.pop();
-        pageId--;
-        return nextState;
-    default:
-        return state;
+        case ADD_PAGE:
+            nextState.push(createPage(action.id, action.column));
+            return nextState;
+        case REMOVE_PAGE:
+            // var index = getPageIndex(action.id);
+            // if (index !== undefined) {
+            //     nextState.splice(index, 1);
+            //     pageId--;
+            //     return nextState;
+            // }
+            nextState.pop();
+            pageId = nextState.length;
+            return nextState;
+        default:
+            return state;
     }
 
     function createPage(id, col) {
         var column = [];
         for (var i = 0; i < col; i++) {
-            column.push({
-                module: []
-            });
+            column.push({module: []});
         }
-        return {
-            id: id,
-            column: column
-        };
+        return {id: id, column: column};
     }
 
     function getPageIndex(id) {
@@ -99,28 +83,25 @@ function modules(state, action) {
     var nextState = state.slice(0);
     var index = undefined;
     switch (action.type) {
-    case ADD_MODULE:
-        nextState.push({
-            name: action.name,
-            data: action.data
-        });
-        return nextState;
-    case REMOVE_MODULE:
-        index = getModuleIndex(action.id);
-        if (index !== undefined) {
-            nextState.splice(index, 1);
-            moduleId--;
+        case ADD_MODULE:
+            nextState.push({name: action.name, data: action.data});
             return nextState;
-        }
-    case MODIFY_MODULE:
-        index = getModuleIndex(action.id);
-        if (index !== undefined) {
-            nextState[index].name = action.name;
-            nextState[index].data = action.data;
-            return nextState;
-        }
-    default:
-        return state;
+        case REMOVE_MODULE:
+            index = getModuleIndex(action.id);
+            if (index !== undefined) {
+                nextState.splice(index, 1);
+                moduleId--;
+                return nextState;
+            }
+        case MODIFY_MODULE:
+            index = getModuleIndex(action.id);
+            if (index !== undefined) {
+                nextState[index].name = action.name;
+                nextState[index].data = action.data;
+                return nextState;
+            }
+        default:
+            return state;
     }
 
     function getModuleIndex(id) {
@@ -136,25 +117,26 @@ function resume(state, action) {
     state = state || [];
     var nextState = state.slice(0);
     switch (action.type) {
-    case ADD_PAGE:
-    case REMOVE_PAGE:
-        nextState = pages(state, action);
-        return nextState;
-    case ADD_MODULE:
-        var pageIndex = getPageIndex(state, action.pageId);
-        if (pageIndex !== undefined) {
-            nextState[pageIndex].column[action.column].module = modules(nextState[pageIndex].column[action.column].module, action);
+        case ADD_PAGE:
+        case REMOVE_PAGE:
+            nextState = pages(state, action);
             return nextState;
-        }
-    case REMOVE_MODULE:
-    case MODIFY_MODULE:
-        var indexPCM = getModules(state, action.id);
-        if (indexPCM) {
-            nextState[indexPCM[0]][indexPCM[1]].module = modules(nextState[indexPCM[0]][indexPCM[1]].module, action);
-            return nextState;
-        }
-    default:
-        return state;
+        case ADD_MODULE:
+            var pageIndex = getPageIndex(state, action.pageId);
+            console.log(state, action.pageId);
+            if (pageIndex !== undefined) {
+                nextState[pageIndex].column[action.column - 1].module = modules(nextState[pageIndex].column[action.column - 1].module, action);
+                return nextState;
+            }
+        case REMOVE_MODULE:
+        case MODIFY_MODULE:
+            var indexPCM = getModules(state, action.id);
+            if (indexPCM) {
+                nextState[indexPCM[0]][indexPCM[1]].module = modules(nextState[indexPCM[0]][indexPCM[1]].module, action);
+                return nextState;
+            }
+        default:
+            return state;
     }
 
     function getModules(pages, id) {

@@ -1,6 +1,7 @@
 var React = require('react');
 var Componts = require('./components.js');
 var ReactRedux = require('react-redux');
+
 var Column = React.createClass({
     render: function() {
         return (
@@ -47,7 +48,6 @@ var Resume = React.createClass({
         );
     }
 });
-
 
 var matchStateToProps = function(state, props) {
     return {

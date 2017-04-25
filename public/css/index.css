@@ -19,10 +19,17 @@ button {
     background-color: #EEE;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 input, select {
+    border: none;
     outline: none;
+}
+
+hr {
+    border-style: dashed;
+    border-color: #A8BAD0;
 }
 
 .hidden {
@@ -231,4 +238,68 @@ input, select {
 
 .timeline .content {
     margin-top: 5px;
+}
+
+/* editor */
+
+.editor {
+    padding: 2em 5em;
+    padding-right: 1em;
+    font-size: 16px;
+}
+
+.editor select,
+.editor input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+
+.editor select,
+.editor input[type="number"] {
+    background-color: #AFBED5;
+    color: #fff;
+}
+
+.editor button {
+    background-color: #EA7087;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    color: #fff;
+    transition: all ease 0.5s;
+}
+
+.editor button:hover {
+    background-color: #E55C76;
+}
+
+.module-manage p,
+.page-manage p {
+    margin: 0.5em 0;
+}
+
+.form-field>.title {
+    font-size: 1.5em;
+    color: #1D414F;
+    margin: 0.5em 0;
+}
+
+.form-field>.title>span {
+    display: inline-block;
+    background-color: #50A3D5;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5em;
+    margin-left: -3em;
+    margin-right: 1.5em;
+}
+
+.form-field>.content {
+    background-color: #F4F6F5;
+    border-radius: 0.5em;
+    padding: 1em;
 }

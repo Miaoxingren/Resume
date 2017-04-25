@@ -20,12 +20,12 @@ var ObjectForm = React.createClass({
                     ? this.props.items.map(function(item, i) {
                         return (
                             <div key={i}>
-                                <label htmlFor={item}>{item}:</label>
-                                <input name={item} type="text" onChange={this.changeData}/>
+                                <p><label>{item}</label></p>
+                                <p><input name={item} type="text" onChange={this.changeData}/></p>
                             </div>
                         );
                     }.bind(this))
-                    : false}
+                : false}
             </div>
         );
     }
@@ -54,10 +54,10 @@ var ArrayForm = React.createClass({
                                 <p key={i}>{item}</p>
                             );
                         }.bind(this))
-                        : false}
+                    : false}
                 </div>
-                <input type="text" onChange={this.changeData}/>
-                <button onClick={this.addItem}>add Item</button>
+                <p><input type="text" onChange={this.changeData}/></p>
+                <p><button onClick={this.addItem}>add Item</button></p>
             </div>
         );
     }
@@ -101,23 +101,23 @@ var ObjArrayForm = React.createClass({
                                                 <p key={i}>{key}:{item[key]}</p>
                                             );
                                         })
-                                        : false}
+                                    : false}
                                 </div>
                             );
                         }.bind(this))
-                        : false}
+                    : false}
                 </div>
                 {this.props.items
                     ? this.props.items.map(function(item, i) {
                         return (
                             <div key={i}>
-                                <label htmlFor={item}>{item}:</label>
-                                <input name={item} type="text" onChange={this.changeData}/>
+                                <p><label>{item}</label></p>
+                                <p><input name={item} type="text" onChange={this.changeData}/></p>
                             </div>
                         );
                     }.bind(this))
-                    : false}
-                <button onClick={this.addItem}>add Item</button>
+                : false}
+                <p><button onClick={this.addItem}>add Item</button></p>
             </div>
         );
     }
@@ -134,7 +134,7 @@ var PlainForm = React.createClass({
     render: function() {
         return (
             <div>
-                <input type="text" onChange={this.changeData}/>
+                <p><input type="text" onChange={this.changeData}/></p>
             </div>
         );
     }
@@ -149,15 +149,15 @@ var modules = [
     {
         name: 'brief',
         type: OBJ,
-        item: ['name', 'job']
+        items: ['name', 'job']
     }, {
         name: 'basic',
         type: OBJ,
-        item: ['age', 'loc', 'phone', 'mail']
+        items: ['age', 'loc', 'phone', 'mail']
     }, {
         name: 'hobby',
         type: OBJARRAY,
-        item: ['icon', 'content']
+        items: ['icon', 'content']
     }, {
         name: 'prize',
         type: ARRAY
@@ -167,42 +167,39 @@ var modules = [
     }, {
         name: 'skill',
         type: OBJARRAY,
-        item: ['name', 'degree']
+        items: ['name', 'degree']
     }, {
         name: 'evaluation',
         type: PLAIN
     }, {
         name: 'education',
         type: OBJARRAY,
-        item: ['name', 'headline', 'content']
+        items: ['name', 'headline', 'content']
     }, {
         name: 'practice',
         type: OBJARRAY,
-        item: ['name', 'headline', 'content']
+        items: ['name', 'headline', 'content']
     }, {
         name: 'intern',
         type: OBJARRAY,
-        item: ['name', 'headline', 'content']
+        items: ['name', 'headline', 'content']
     }, {
         name: 'repo',
         type: OBJARRAY,
-        item: ['name', 'headline', 'content']
+        items: ['name', 'headline', 'content']
     }, {
         name: 'custom',
         type: OBJARRAY,
-        item: ['name', 'headline', 'content']
+        items: ['name', 'headline', 'content']
     }
 ];
 
-var Editor = React.createClass({
+var PageManager = React.createClass({
     getInitialState: function() {
-        return {column: 2, moduleToAdd: 'brief', data: {}};
+        return {column: 2};
     },
     changeColumn: function(event) {
         this.setState({column: event.target.value});
-    },
-    changeModuleToAdd: function(event) {
-        this.setState({moduleToAdd: event.target.value});
     },
     addPage: function(event) {
         this.props.addPage(this.state.column);
@@ -210,32 +207,64 @@ var Editor = React.createClass({
     removePage: function(event) {
         this.props.removePage();
     },
+    render: function () {
+        return (
+            <div className="page-manage">
+                <p><label>Column</label></p>
+                <p><input type="number" min="1" max="2" defaultValue="2" onChange={this.changeColumn}/></p>
+                <p><button onClick={this.addPage}>add page</button></p>
+                <hr />
+                <p><button onClick={this.removePage}>remove last page</button></p>
+            </div>
+        );
+    }
+});
+
+var ModuleManager = React.createClass({
+    getInitialState: function() {
+        return {page: 1, column: 2, module: 'brief', data: null};
+    },
+    changePage: function(event) {
+        this.setState({page: event.target.value});
+    },
+    changeColumn: function(event) {
+        this.setState({column: event.target.value});
+    },
+    changeModule: function(event) {
+        this.setState({module: event.target.value});
+    },
     addModule: function(event) {
-        this.props.addModule(this.state.moduleToAdd, this.state.data);
+        if (!this.state.data) {
+            return;
+        }
+        var data = this.state.data;
+        if (this.state.module === 'basic') {
+            var res = [];
+            Object.keys(this.state.data).map(function (key) {
+                res.push({icon: key, name: key, content: data[key]});
+            })
+            data = res;
+        }
+        this.props.addModule(this.state.page - 1, this.state.column, this.state.module, data);
     },
     recieveData: function(data) {
+        console.log(data);
         this.setState({data: data});
     },
-    render: function() {
+    render: function () {
         return (
-            <div>
-                <label htmlFor="column">Column:</label>
-                <input name="column" type="number" min="1" max="2" value={this.state.column} onChange={this.changeColumn}/>
-                <button onClick={this.addPage}>add page</button>
-                <br/>
-                <button onClick={this.removePage}>remove last page</button>
-                <br/>
-                <select value={this.state.moduleToAdd} onChange={this.changeModuleToAdd}>
-                    {modules.map(function(module, i) {
-                        return (
-                            <option key={i} value={module.name}>{module.name}</option>
-                        );
-                    })}
-                </select>
+            <div className="module-manage">
+                <p>
+                    <select value={this.state.module} onChange={this.changeModule}>
+                        {modules.map(function(module, i) {
+                            return (
+                                <option key={i} value={module.name}>{module.name}</option>
+                            );
+                        })}
+                    </select>
+                </p>
                 {modules.map(function(module, i) {
-                    var className = this.state.moduleToAdd === module.name
-                        ? 'shown'
-                        : 'hidden';
+                    var className = this.state.module === module.name ? 'shown' : 'hidden';
                     var Compont = PlainForm;
                     switch (module.type) {
                         case OBJ:
@@ -252,18 +281,49 @@ var Editor = React.createClass({
                     }
                     return (
                         <div className={className} key={i}>
-                            <Compont passData={this.recieveData} items={module.item}/>
+                            <Compont passData={this.recieveData} items={module.items}/>
                         </div>
                     );
                 }.bind(this))}
-                <button onClick={this.addModule}>add module</button>
+                <hr />
+                <p><label>Page</label></p>
+                <p><input type="number" min="1" max={this.props.pageCnt} value={this.state.page} onChange={this.changePage}/></p>
+                <p><label>Column</label></p>
+                <p><input type="number" min="1" max={this.props.colOfPage[this.state.page - 1] || 1} defaultValue="1" onChange={this.changeColumn}/></p>
+                <p><button onClick={this.addModule}>add module</button></p>
+            </div>
+        );
+    }
+});
+
+var Editor = React.createClass({
+    render: function() {
+        return (
+            <div className="editor">
+                <div className="form-field">
+                    <p className="title"><span>1</span>Page manage</p>
+                    <div className="content"><PageManager addPage={this.props.addPage} removePage={this.props.removePage} /></div>
+                </div>
+                <div className="form-field">
+                    <p className="title"><span>2</span>Module manage</p>
+                    <div className="content">
+                        <ModuleManager addModule={this.props.addModule} pageCnt={this.props.pageCnt} colOfPage={this.props.colOfPage}/>
+                    </div>
+                </div>
             </div>
         );
     }
 });
 
 var matchStateToProps = function(state, props) {
-    return {};
+    var colOfPage = [];
+    for (var i = 0; i < state.length; i++) {
+        colOfPage.push(state[i].column.length);
+    }
+    return {
+        pageCnt: state.length,
+        colOfPage: colOfPage
+    };
 };
 
 var matchDispathToProps = function(dispatch, props) {
@@ -274,8 +334,8 @@ var matchDispathToProps = function(dispatch, props) {
         removePage: function() {
             dispatch(reducer.removePage());
         },
-        addModule: function(name, data) {
-            dispatch(reducer.addModule(0, 0, name, data));
+        addModule: function(page, column, name, data) {
+            dispatch(reducer.addModule(page, column, name, data));
         }
     };
 };
